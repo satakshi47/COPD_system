@@ -1,0 +1,33 @@
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Secrets and API keys
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Local database
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated model files
+models/*.joblib
+models/*.pkl
+
+# Local data (keep datasets out of Git by default)
+data/*
+!data/.gitkeep
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db

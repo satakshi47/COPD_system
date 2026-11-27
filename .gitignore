@@ -19,16 +19,7 @@ env/
 *.sqlite
 *.sqlite3
 
-# Generated model files
-models/*.joblib
-models/*.pkl
-
-# Local data (keep datasets out of Git by default)
-data/*
-!data/.gitkeep
-
 # Editor and OS files
 .vscode/
 .DS_Store
 Thumbs.db
-.joblib

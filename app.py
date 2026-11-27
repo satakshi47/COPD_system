@@ -140,10 +140,10 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    st.markdown("### 🏠 Home")
-    st.markdown("### 📊 COPD Prediction")
-    st.markdown("### ♡ Health Insights")
-    st.markdown("### 📖 Resources")
+    st.markdown("###  Home")
+    st.markdown("###  COPD Prediction")
+    st.markdown("###  Health Insights")
+    st.markdown("###  Resources")
     st.markdown("### ⓘ About Us")
 
     st.markdown("---")
@@ -160,8 +160,9 @@ with st.sidebar:
 
 
 # ---------------- LOAD MODEL AND DATA ----------------
-model_path = Path("models/decision_tree.joblib")
-training_path = Path("data/processed/X_train.csv")
+BASE_DIR = Path(__file__).parent
+model_path = BASE_DIR / "models" / "decision_tree.joblib"
+training_path = BASE_DIR / "data" / "processed" / "X_train.csv"
 
 if not model_path.exists():
     st.error("Model file not found: models/decision_tree.joblib")
@@ -202,19 +203,12 @@ optional_features = [
 # ---------------- HERO BANNER ----------------
 st.markdown(
     """
-    <div class="hero">
-        <div class="hero-title">COPD Prediction</div>
-
-        <div class="hero-subtitle">
-            Understand your model's prediction.
-        </div>
-
-        <p class="hero-description">
-            Enter the available feature values below to see
-            the predicted COPD severity class.
-        </p>
-    </div>
-    """,
+<div class="hero">
+<div class="hero-title">COPD Prediction</div>
+<div class="hero-subtitle">Understand your model's prediction.</div>
+<p class="hero-description">Enter the available feature values below to see the predicted COPD severity class.</p>
+</div>
+""",
     unsafe_allow_html=True
 )
 
@@ -235,7 +229,7 @@ left_col, right_col = st.columns(
 with left_col:
     with st.container(border=True):
 
-        st.subheader("🩺 Patient Details")
+        st.subheader("Patient Details")
         st.caption("Enter the available feature values.")
 
         with st.form("copd_prediction_form"):
@@ -277,12 +271,12 @@ with left_col:
                         )
 
             submitted = st.form_submit_button(
-                "✨ Predict COPD Severity",
+                "Predict COPD Severity",
                 use_container_width=True
             )
 
         st.caption(
-            "The model uses all 18 features. Optional fields are "
+            f"The model uses all {len(feature_names)} features. Optional fields are "
             "prefilled with median values from the training data."
         )
 
@@ -291,7 +285,7 @@ with left_col:
 with right_col:
     with st.container(border=True):
 
-        st.subheader("📊 Prediction Result")
+        st.subheader("Prediction Result")
 
         st.caption(
             f"Prediction date: {date.today().strftime('%d %b %Y')}"
@@ -308,20 +302,12 @@ with right_col:
 
             st.markdown(
                 f"""
-                <div class="result-box">
-                    <div class="result-label">
-                        MODEL PREDICTION
-                    </div>
-
-                    <div class="result-value">
-                        {prediction}
-                    </div>
-
-                    <div>
-                        Predicted COPD severity class
-                    </div>
-                </div>
-                """,
+<div class="result-box">
+<div class="result-label">MODEL PREDICTION</div>
+<div class="result-value">{prediction}</div>
+<div>Predicted COPD severity class</div>
+</div>
+""",
                 unsafe_allow_html=True
             )
 
@@ -337,62 +323,21 @@ with right_col:
 
             st.markdown(
                 """
-                <div class="result-box">
-                    <div class="result-label">
-                        PREDICTION RESULT
-                    </div>
-
-                    <div class="result-value">—</div>
-
-                    <div>
-                        Your result will appear here after prediction.
-                    </div>
-                </div>
-                """,
+<div class="result-box">
+<div class="result-label">PREDICTION RESULT</div>
+<div class="result-value">—</div>
+<div>Your result will appear here after prediction.</div>
+</div>
+""",
                 unsafe_allow_html=True
             )
 
         st.markdown("---")
 
-        st.markdown("### 💡 General Health Information")
+        st.markdown("### General Health Information")
 
         st.markdown("""
         - Avoid smoking and secondhand smoke.
         - Reduce exposure to dust and air pollution.
         - Discuss breathing symptoms with a qualified healthcare professional.
         """)
-
-
-# ---------------- BOTTOM INFORMATION CARDS ----------------
-st.markdown(" ")
-
-card1, card2, card3 = st.columns(3)
-
-with card1:
-    with st.container(border=True):
-
-        st.markdown("### 🫁 About COPD")
-
-        st.write(
-            "COPD is a long-term lung condition that can make breathing difficult."
-        )
-
-with card2:
-    with st.container(border=True):
-
-        st.markdown("### 🌿 Healthy Lung Habits")
-
-        st.write(
-            "Avoid smoking, stay active as appropriate, and discuss "
-            "respiratory symptoms with a healthcare professional."
-        )
-
-with card3:
-    with st.container(border=True):
-
-        st.markdown("### ℹ️ About This Project")
-
-        st.write(
-            "This student project demonstrates a machine-learning model "
-            "that predicts a COPD severity class from dataset features."
-        )

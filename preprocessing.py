@@ -50,6 +50,7 @@ X_test.to_csv("data/processed/X_test.csv", index=False)
 y_train.to_csv("data/processed/y_train.csv", index=False)
 y_test.to_csv("data/processed/y_test.csv", index=False)
 
+
 # 8. Display results
 print("Data preprocessing completed!")
 print("Training data shape:", X_train.shape)
